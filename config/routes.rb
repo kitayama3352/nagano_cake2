@@ -31,13 +31,15 @@ Rails.application.routes.draw do
  namespace :public do
 
    resources :items,only:[:index,:show]
-   resources :customers,only:[:show,:edit,:update]
    resources :cart_items,only:[:index,:update,:destroy,:create]
    resources :oders,only:[:new,:create,:index,:show]
    resources :addresses,only:[:index,:edit,:create,:update,:destroy]
 
   end
 
+  get '/customers/my_pag' => 'public/customers#show'
+  get '/customers/edit' => 'public/customers#edit'
+  patch '/customers' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw'
   delete '/cart_items/destroy_all' => 'puclic/cart_items#destroy_all'

@@ -4,7 +4,7 @@
     <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/ce309d8801.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -21,10 +21,11 @@
               <ul class="nav navbar-nav navbar-right wf-mplus1p">
                 <!-- 会員でログインしている時 -->
                 <% if customer_signed_in? %>
-                  <li id="youkoso">ようこそ、<%= current_customers.last_name %>さん！</li>
-                  <li><%= link_to public_customer_path do %><i class="fas fa-user"></i>マイページ<% end %></li>
-                  <li><%= link_to public_item_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
-                  <li><%= link_to public_cart_items_path do %><div class="icon-flex"><i class="icon-count text-center"><%= current_member.cart_items.count %></i></div><i class="cart">カート</i><% end %></li>
+                  <li>ようこそ、<%= current_customer.first_name%>さん！</li>
+                  <li><%= link_to customers_my_pag_path do %><i class="fas fa-user"></i>マイページ<% end %></li>
+                  <li><%= link_to public_items_path do %><i class="fas fa-cookie-bite"></i>商品一覧<% end %></li>
+                  <li><%= link_to public_cart_items_path do %><div class="icon-flex"><i class="icon-count text-center">
+                    <%= current_customer.cart_items.count %></i></div><i class="cart">カート</i><% end %></li>
                   <li><%= link_to destroy_customer_session_path, method: :delete do %><i class="fas fa-sign-out-alt"></i>ログアウト<% end %></li>
                   <%= image_tag "cake.gif", :size =>'80x80' %>
                 <!-- 管理者でログインしている時 -->
