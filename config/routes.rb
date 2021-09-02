@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   end
 
+ get '/about' => 'public/homes#about'
+
  namespace :public do
 
    resources :items,only:[:index,:show]
