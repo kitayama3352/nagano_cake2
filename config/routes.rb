@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
  root 'public/homes#top'
+ get '/customers/edit' => 'public/customers#edit',as: 'public_customers_edit'
+ patch '/customers' => 'public/customers#update',as: 'public_customers_update'
 
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
@@ -38,8 +40,6 @@ Rails.application.routes.draw do
   end
 
   get '/customers/my_pag' => 'public/customers#show'
-  get '/customers/edit' => 'public/customers#edit'
-  patch '/customers' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw'
   delete '/cart_items/destroy_all' => 'puclic/cart_items#destroy_all'
